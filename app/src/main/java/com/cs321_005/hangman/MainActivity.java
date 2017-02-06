@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toast.makeText(getApplicationContext(),"Testing",Toast.LENGTH_SHORT).show();
         Log.d("GitTesting","Test Git");
+        Log.d("GitTesting","AHmads Test Message");
     }
 }
