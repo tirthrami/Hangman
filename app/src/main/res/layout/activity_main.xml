@@ -10,11 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.cs321_005.hangman.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-
     <Button
         android:text="Help"
         android:layout_width="wrap_content"
