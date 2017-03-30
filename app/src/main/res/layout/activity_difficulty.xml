@@ -11,10 +11,10 @@
     tools:context="com.cs321_005.hangman.Difficulty">
 
     <Button
-        android:text="Difficulty"
+        android:text="Easy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Difficulty"
+        android:id="@+id/easyDifficulty"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
