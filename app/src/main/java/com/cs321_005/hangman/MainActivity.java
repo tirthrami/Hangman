@@ -10,22 +10,22 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button howToPlay;
-    Button newGame;
+    Button difficultyButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        newGame = (Button) findViewById(R.id.newgame);
+        difficultyButton = (Button) findViewById(R.id.difficultyButton);
         howToPlay = (Button) findViewById(R.id.Help);
         Toast.makeText(getApplicationContext(), "Testing", Toast.LENGTH_SHORT).show();
         Log.d("GitTesting", "Test Git");
         Log.d("GitTesting", "Ahmads Test Message");
         Log.d("TestMessages", "Test2");
-        newGame.setOnClickListener(new View.OnClickListener() {
+        difficultyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent newGame = new Intent(getBaseContext(),NewGame.class);//intents allow you to transfer data over transfer variables over to new class
-                startActivity(newGame);
+                Intent difficulty = new Intent(getBaseContext(),Difficulty.class);//intents allow you to transfer data over transfer variables over to new class
+                startActivity(difficulty);
             }
         });
 
