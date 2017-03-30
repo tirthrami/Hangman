@@ -10,4 +10,6 @@ public class Difficulty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty);
     }
+
+String test = "hello";
 }
