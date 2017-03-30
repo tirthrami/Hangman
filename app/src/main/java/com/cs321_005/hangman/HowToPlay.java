@@ -12,7 +12,6 @@ public class HowToPlay extends AppCompatActivity {
         setContentView(R.layout.activity_how_to_play);
 
         TextView rules = (TextView) findViewById(R.id.tv_howToPlay);
-
         rules.setText(R.string.rules);
 
     }
