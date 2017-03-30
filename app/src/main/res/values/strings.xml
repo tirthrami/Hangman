@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Hangman</string>
     <string name="title_activity_new_game">NewGame</string>
+
+    <string name="rules">These are the rules!</string>
 </resources>
