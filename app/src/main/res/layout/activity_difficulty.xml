@@ -15,8 +15,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/easyDifficulty"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/mediumDifficulty"
+        android:layout_alignStart="@+id/mediumDifficulty"
+        android:layout_marginTop="126dp" />
+    <Button
+        android:text="Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mediumDifficulty"
+        android:layout_below="@+id/easyDifficulty"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+    <Button
+        android:text="Hard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hardDifficulty"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/mediumDifficulty"
+        android:layout_alignLeft="@+id/mediumDifficulty"
+        android:layout_alignStart="@+id/mediumDifficulty" />
 
 </RelativeLayout>
