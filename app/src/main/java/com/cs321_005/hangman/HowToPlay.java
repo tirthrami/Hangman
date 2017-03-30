@@ -11,5 +11,6 @@ public class HowToPlay extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
         String hTPText = "Hello";
+
     }
 }
