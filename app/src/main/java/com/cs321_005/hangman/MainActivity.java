@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         howToPlay.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent newGame = new Intent(getBaseContext(),NewGame.class);//intents allow you to transfer data over transfer variables over to new class
-                startActivity(newGame);
+                Intent helpScreen = new Intent(getBaseContext(),HowToPlay.class);//intents allow you to transfer data over transfer variables over to new class
+                startActivity(helpScreen);
             }
         });
 
