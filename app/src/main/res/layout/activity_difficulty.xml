@@ -10,4 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.cs321_005.hangman.Difficulty">
 
+    <Button
+        android:text="Difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Difficulty"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>

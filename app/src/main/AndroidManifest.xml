@@ -25,7 +25,8 @@
             android:value="@integer/google_play_services_version" />
 
         <activity android:name=".HowToPlay" />
-        <activity android:name=".Difficulty"></activity>
+        <activity android:name=".Difficulty" />
+        <activity android:name=".PlayingGame"></activity>
     </application>
 
 </manifest>

@@ -11,19 +11,19 @@
     tools:context="com.cs321_005.hangman.MainActivity">
 
     <Button
-        android:text="Help"
+        android:id="@+id/Help"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Help"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="How To Play" />
 
     <Button
-        android:text="New Game"
+        android:id="@+id/difficultyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
-        android:id="@+id/newgame"
         android:layout_above="@+id/Help"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:text="New Game" />
 </RelativeLayout>
