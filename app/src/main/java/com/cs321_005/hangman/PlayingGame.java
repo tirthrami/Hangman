@@ -33,6 +33,32 @@ public class PlayingGame extends AppCompatActivity {
         letters[0] = (Button) findViewById(R.id.button_A);//starting from index 0 to 26 we go from A-Z
         letters[1] = (Button) findViewById(R.id.button_B);
         letters[2] = (Button) findViewById(R.id.button_C);
+        letters[3] = (Button) findViewById(R.id.button_D);
+        letters[4] = (Button) findViewById(R.id.button_E);
+        letters[5] = (Button) findViewById(R.id.button_F);
+        letters[6] = (Button) findViewById(R.id.button_G);
+        letters[7] = (Button) findViewById(R.id.button_H);
+        letters[8] = (Button) findViewById(R.id.button_I);
+        letters[9] = (Button) findViewById(R.id.button_J);
+        letters[10] = (Button) findViewById(R.id.button_K);
+        letters[11] = (Button) findViewById(R.id.button_L);
+        letters[12] = (Button) findViewById(R.id.button_M);
+        letters[13] = (Button) findViewById(R.id.button_N);
+        letters[14] = (Button) findViewById(R.id.button_O);
+        letters[15] = (Button) findViewById(R.id.button_P);
+        letters[16] = (Button) findViewById(R.id.button_Q);
+        letters[17] = (Button) findViewById(R.id.button_R);
+        letters[18] = (Button) findViewById(R.id.button_S);
+        letters[19] = (Button) findViewById(R.id.button_T);
+        letters[20] = (Button) findViewById(R.id.button_U);
+        letters[21] = (Button) findViewById(R.id.button_V);
+        letters[22] = (Button) findViewById(R.id.button_W);
+        letters[23] = (Button) findViewById(R.id.button_X);
+        letters[24] = (Button) findViewById(R.id.button_Y);
+        letters[25] = (Button) findViewById(R.id.button_Z);
+        voiceButton = (Button) findViewById(R.id.button_voice);
+        gestureButton = (Button) findViewById(R.id.Gesture);
+
         //Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
         newGame = (Button) findViewById(R.id.NewGame);//setting the new game button to the New Game in XML
         newGame.setOnClickListener(new View.OnClickListener() {//listens for the click of the NEw Game button and starts a new game
@@ -97,7 +123,7 @@ public class PlayingGame extends AppCompatActivity {
         letters[6].setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Button Pressed G",Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'b';
+                char guessedLetter = 'g';
                 checkWord(guessedLetter);
             }
         });
