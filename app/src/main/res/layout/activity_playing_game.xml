@@ -252,4 +252,27 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:id="@+id/NewGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Quit"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/imageButton"
+        android:layout_toStartOf="@+id/imageButton"
+        android:text="New" />
+
+    <Button
+        android:id="@+id/Quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imageButton"
+        android:layout_toRightOf="@+id/imageButton"
+        android:text="quit" />
+
 </RelativeLayout>
