@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Hangman</string>
     <string name="title_activity_new_game">NewGame</string>
+
+    <string name="rules">To start a new game, tap the new game button. Three difficulty options will be presented. \'Easy\' for easy words,
+\'Medium\' for average words, and \'Hard\' for the more experienced player. After selecting a difficulty, a new game
+will start. Tapping the quit button will bring you back to the main screen and tapping the new game button will bring
+you back to the choose difficulty screen. To guess a letter, choose the button corresponding to the letter in the
+button box, choose the microphone to guess a letter by saying it out loud, or choose the button with the hand and
+squiggly line to write out the letter. Incorrect guesses will cause the hangman\'s body to
+be drawn. You lose if the entire body is drawn. Correct guesses will begin to fill in the word and guessed letters will
+appear in the \'Guessed letters\' box. Guess the entire word without completing the hangman\'s body and you win!  </string>
 </resources>

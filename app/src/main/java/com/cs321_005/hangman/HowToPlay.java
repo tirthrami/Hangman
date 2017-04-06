@@ -10,7 +10,9 @@ public class HowToPlay extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how_to_play);
-        String hTPText = "Hello";
+
+        TextView rules = (TextView) findViewById(R.id.tv_howToPlay);
+        rules.setText(R.string.rules);
 
     }
 }
