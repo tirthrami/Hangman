@@ -15,9 +15,9 @@ public class NewGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_game);
 
-       Button easyDifficulty = (Button) findViewById(R.id.Difficulty);
-        Button mediumDifficulty = (Button) findViewById(R.id.Difficulty);
-        Button hardDifficulty = (Button) findViewById(R.id.Difficulty);
+       // Button easyDifficulty = (Button) findViewById(R.id.Difficulty);
+        //Button mediumDifficulty = (Button) findViewById(R.id.Difficulty);
+        //Button hardDifficulty = (Button) findViewById(R.id.Difficulty);
 
 
 
