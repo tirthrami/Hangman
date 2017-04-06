@@ -61,6 +61,11 @@ public class PlayingGame extends AppCompatActivity {
 
         //Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
         newGame = (Button) findViewById(R.id.NewGame);//setting the new game button to the New Game in XML
+        TextView test = (TextView) findViewById(R.id.textView_guess);
+        test.setText(testword);//replace testword with whatever the actual value is
+
+
+
         newGame.setOnClickListener(new View.OnClickListener() {//listens for the click of the NEw Game button and starts a new game
             public void onClick(View view) {
                 Intent NewGame = new Intent(getBaseContext(),MainActivity.class);//intents allow you to transfer data over transfer variables over to new class
@@ -261,26 +266,14 @@ public class PlayingGame extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
     public boolean checkWord(char letterCheck){//checks the guessed letter against the word to be guessed
 
         if(testword.indexOf(letterCheck)!=-1){
             Toast.makeText(getApplicationContext(), "Letter is in Word", Toast.LENGTH_SHORT).show();
+            testword = "B";//this stuff works in theory if we move it to change word once we remove the chars from the string we reset the Text view and itll update accodingly on screen
+            TextView s = (TextView) findViewById(R.id.textView_guess);
+            s.setText(testword);
             return true;
         }
         else {
