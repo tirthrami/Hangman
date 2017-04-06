@@ -24,6 +24,8 @@ public class PlayingGame extends AppCompatActivity {
     Button newGame;
     TextView usedLetters;
     TextView unknownWord;
+    String testword ="a";
+    int guessesRemaining = 6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,14 +54,216 @@ public class PlayingGame extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(),"Button Pressed A",Toast.LENGTH_SHORT).show();
                 char guessedLetter = 'a';
-                //checkWord(guessedLetter);
+                checkWord(guessedLetter);
             }
         });
+        letters[1].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed B",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'b';
+                checkWord(guessedLetter);
+            }
+        });
+
+        letters[2].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed C",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'c';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[3].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed D",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'd';
+                checkWord(guessedLetter);
+            }
+        });
+
+        letters[4].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed E",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'e';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[5].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed F",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'f';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[6].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed G",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'b';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[7].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed H",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'h';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[8].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed I",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'i';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[9].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed J",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'j';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[10].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed K",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'k';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[11].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed L",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'l';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[12].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed M",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'm';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[13].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed N",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'n';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[14].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed O",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'o';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[15].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed P",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'p';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[16].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed Q",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'q';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[17].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed R",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'r';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[18].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed S",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 's';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[19].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed T",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 't';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[20].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed U",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'u';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[21].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed V",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'v';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[22].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed W",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'w';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[23].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed X",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'x';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[24].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed Y",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'y';
+                checkWord(guessedLetter);
+            }
+        });
+        letters[25].setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Button Pressed Z",Toast.LENGTH_SHORT).show();
+                char guessedLetter = 'z';
+                checkWord(guessedLetter);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
-    public boolean checkWord(){//checks the guessed letter against the word to be guessed
-        return false;
+    public boolean checkWord(char letterCheck){//checks the guessed letter against the word to be guessed
+
+        if(testword.indexOf(letterCheck)!=-1){
+            Toast.makeText(getApplicationContext(), "Letter is in Word", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Letter Is not in Word",Toast.LENGTH_LONG).show();
+            drawMan();
+            return false;
+        }
     }
+
 
     /*public char voiceRecog(){//calls some voice recognition system to obtain a letter
         char finalchar= a;
@@ -80,7 +284,14 @@ public class PlayingGame extends AppCompatActivity {
     }
 
     public int drawMan(){//this will be called when checkWord() returns a false value and will draw a piece of the character
-        return 1;
+        guessesRemaining--;
+        //drawing the actual hangman picture piece by piece
+
+        if(guessesRemaining==0){
+            youLose();
+        }
+            Toast.makeText(getApplicationContext(), "You Have "+guessesRemaining+" Guesses Remaining", Toast.LENGTH_SHORT).show();
+            return guessesRemaining;
 
     }
 
