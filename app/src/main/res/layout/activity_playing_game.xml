@@ -20,7 +20,7 @@
 
     <Button
         android:text="GESTURE"
-        android:id="@+id/button13"
+        android:id="@+id/Gesture"
         android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp"
         android:layout_width="150dp"
