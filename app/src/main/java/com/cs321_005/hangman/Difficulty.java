@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class Difficulty extends AppCompatActivity {
-    Button easyDifficulty;
+    Button easyDifficulty;//Buttons for the three different difficulties
     Button mediumDifficulty;
     Button hardDifficulty;
-    String difficultyLevel;
+    String difficultyLevel;//String that will pass the difficulty chosen to the PlayingGame Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,9 +26,7 @@ public class Difficulty extends AppCompatActivity {
         easyDifficulty.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent easyDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
-                //Add in the intent.extra to pass the correct String into the
-
-                difficultyLevel = "Easy";
+                difficultyLevel = "Easy";//User chose the Easy Difficulty
                 easyDifficulty.putExtra("Easy",difficultyLevel);
                 startActivity(easyDifficulty);
             }
@@ -37,7 +35,7 @@ public class Difficulty extends AppCompatActivity {
             public void onClick(View view) {
                 Intent mediumDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
 
-                difficultyLevel = "Medium";
+                difficultyLevel = "Medium";//user chose the Medium Difficulty
                 mediumDifficulty.putExtra("Medium",difficultyLevel);
                 startActivity(mediumDifficulty);
             }
@@ -45,8 +43,8 @@ public class Difficulty extends AppCompatActivity {
         hardDifficulty.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent hardDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
-                difficultyLevel = "Hard";
-                hardDifficulty.putExtra("Hard",difficultyLevel);
+                difficultyLevel = "Hard";//User chose the Hard Difficulty
+                hardDifficulty.putExtra("Hard",difficultyLevel);//passing the String into the
                 startActivity(hardDifficulty);
             }
         });
