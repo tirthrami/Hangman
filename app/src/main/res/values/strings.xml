@@ -10,4 +10,36 @@ button box, choose the microphone to guess a letter by saying it out loud, or ch
 squiggly line to write out the letter. Incorrect guesses will cause the hangman\'s body to
 be drawn. You lose if the entire body is drawn. Correct guesses will begin to fill in the word and guessed letters will
 appear in the \'Guessed letters\' box. Guess the entire word without completing the hangman\'s body and you win!  </string>
+
+
+    <string-array name="easy_word_array">
+        <item>kitten</item>
+        <item>table</item>
+        <item>book</item>
+        <item>grass</item>
+        <item>ball</item>
+        <item>paint</item>
+        <item>paper</item>
+    </string-array>
+
+    <string-array name="medium_word_array">
+        <item>computer</item>
+        <item>windowsill</item>
+        <item>hardwood</item>
+        <item>textbooks</item>
+        <item>cardigan</item>
+        <item>quilt</item>
+        <item>magenta</item>
+    </string-array>
+
+    <string-array name="hard_word_array">
+        <item>xylophone</item>
+        <item>buffoon</item>
+        <item>bagpipes</item>
+        <item>witchcraft</item>
+        <item>rickshaw</item>
+        <item>microwave</item>
+        <item>mnemonic</item>
+    </string-array>
+
 </resources>

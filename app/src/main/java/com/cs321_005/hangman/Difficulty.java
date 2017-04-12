@@ -27,7 +27,7 @@ public class Difficulty extends AppCompatActivity {
             public void onClick(View view) {
                 Intent easyDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
                 difficultyLevel = "Easy";//User chose the Easy Difficulty
-                easyDifficulty.putExtra("Easy",difficultyLevel);
+                easyDifficulty.putExtra("level",difficultyLevel);
                 startActivity(easyDifficulty);
             }
         });
@@ -36,7 +36,7 @@ public class Difficulty extends AppCompatActivity {
                 Intent mediumDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
 
                 difficultyLevel = "Medium";//user chose the Medium Difficulty
-                mediumDifficulty.putExtra("Medium",difficultyLevel);
+                mediumDifficulty.putExtra("level",difficultyLevel);
                 startActivity(mediumDifficulty);
             }
         });
@@ -44,7 +44,7 @@ public class Difficulty extends AppCompatActivity {
             public void onClick(View view) {
                 Intent hardDifficulty = new Intent(getBaseContext(),PlayingGame.class);//intents allow you to transfer data over transfer variables over to new class
                 difficultyLevel = "Hard";//User chose the Hard Difficulty
-                hardDifficulty.putExtra("Hard",difficultyLevel);//passing the String into the
+                hardDifficulty.putExtra("level",difficultyLevel);//passing the String into the
                 startActivity(hardDifficulty);
             }
         });
