@@ -31,6 +31,7 @@
     <GridLayout
         android:layout_width="350dp"
         android:layout_height="120dp"
+        android:id="@+id/gridLayout"
         android:layout_above="@+id/button_voice"
         android:layout_centerHorizontal="true">
 
@@ -242,7 +243,7 @@
         android:editable="false"
         tools:editable="false" />
 
-    <ImageButton
+    <ImageView
         android:layout_width="300dp"
         app:srcCompat="@android:drawable/star_big_on"
         android:id="@+id/imageButton"
