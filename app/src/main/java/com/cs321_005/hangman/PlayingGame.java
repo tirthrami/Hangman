@@ -1,6 +1,7 @@
 package com.cs321_005.hangman;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,12 +11,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.speech.RecognizerIntent;
+import android.view.View.OnClickListener;
+import android.view.View;
+import android.app.Activity;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayingGame extends AppCompatActivity {
+public class PlayingGame extends AppCompatActivity implements OnClickListener {
     String TAG = "PlayingGame";
     char guessedLetter;
     String difficulty;
@@ -36,6 +42,8 @@ public class PlayingGame extends AppCompatActivity {
             R.id.button_P, R.id.button_Q, R.id.button_R, R.id.button_S, R.id.button_T, R.id.button_U, R.id.button_V, R.id.button_W,
             R.id.button_X, R.id.button_Y, R.id.button_Z};
 
+    protected static final int REQUEST_OK = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,7 @@ public class PlayingGame extends AppCompatActivity {
         }
 
         voiceButton = (Button) findViewById(R.id.button_voice);
+        voiceButton.setOnClickListener(this);
         gestureButton = (Button) findViewById(R.id.Gesture);
 
         //Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
@@ -267,6 +276,26 @@ public class PlayingGame extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+        try {
+            startActivityForResult(i, REQUEST_OK);
+        } catch (Exception e) {
+            Toast.makeText(this, "Error initializing speech to text engine.", Toast.LENGTH_LONG).show();
+        }
+    }
+    /* Part of the voice recognition. need to change this
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==REQUEST_OK  && resultCode==RESULT_OK) {
+            ArrayList<String> thingsYouSaid = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            ((TextView)findViewById(R.id.text1)).setText(thingsYouSaid.get(0));
+        }
+    }
+*/
     private String getBlankString(String testword) {
         String blank = "";
         for (int i = 0; i < testword.length(); i++) {
