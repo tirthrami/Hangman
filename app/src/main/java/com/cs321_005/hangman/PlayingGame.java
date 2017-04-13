@@ -286,16 +286,28 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
             Toast.makeText(this, "Error initializing speech to text engine.", Toast.LENGTH_LONG).show();
         }
     }
-    /* Part of the voice recognition. need to change this
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==REQUEST_OK  && resultCode==RESULT_OK) {
             ArrayList<String> thingsYouSaid = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            ((TextView)findViewById(R.id.text1)).setText(thingsYouSaid.get(0));
+
+            guessedLetter = thingsYouSaid.get(0).charAt(0);
+
+            //accounts for letters that sound like words
+            //ISSUE: can't recognize letter 'e' for some reason
+            if(thingsYouSaid.get(0).equals("see"))
+                guessedLetter = 'c';
+            else if(thingsYouSaid.get(0).equals("why"))
+                guessedLetter = 'y';
+            else if(thingsYouSaid.get(0).equals("are"))
+                guessedLetter = 'r';
+            else if(thingsYouSaid.get(0).equals("you"))
+                guessedLetter = 'u';
         }
     }
-*/
+
     private String getBlankString(String testword) {
         String blank = "";
         for (int i = 0; i < testword.length(); i++) {
