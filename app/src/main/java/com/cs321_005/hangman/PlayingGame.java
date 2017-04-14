@@ -25,7 +25,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayingGame extends AppCompatActivity implements OnClickListener, OnGesturePerformedListener {
+public class PlayingGame extends AppCompatActivity implements OnGesturePerformedListener {
     String TAG = "PlayingGame";
     char guessedLetter;
     String difficulty;
@@ -49,6 +49,8 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
             R.id.button_P, R.id.button_Q, R.id.button_R, R.id.button_S, R.id.button_T, R.id.button_U, R.id.button_V, R.id.button_W,
             R.id.button_X, R.id.button_Y, R.id.button_Z};
 
+    char[] alpha = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
     protected static final int REQUEST_OK = 1;
 
 
@@ -59,30 +61,38 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
 
         Intent intent = getIntent();
         difficulty = intent.getStringExtra("level");
+
         /**
          * Initialize Alphabet Buttons
          */
         for(int i =0; i < letters.length; i++){
+            final int j = i;
             letters[i] = (Button) findViewById(letterID[i]);
+            letters[i].setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    checkWord(alpha[j]);
+                }
+            });
         }
 
         voiceButton = (Button) findViewById(R.id.button_voice);
-        voiceButton.setOnClickListener(this);
         gestureButton = (Button) findViewById(R.id.Gesture);
-
+        quitButton = (Button) findViewById(R.id.Quit);
+        newGame = (Button) findViewById(R.id.NewGame);//setting the new game button to the New Game in XML
+        tvGuessedWord = (TextView) findViewById(R.id.textView_guess);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);//animator used to switch between keyboard and gestures
         gOverlay = (GestureOverlayView) findViewById(R.id.gOverlay);//view where gestures will be made
+
         gOverlay.addOnGesturePerformedListener(this);//creates a gesture listener to check for gestures on this overlay
 
         gLib = GestureLibraries.fromRawResource(context, R.raw.gestures);
         gLib.load();//Loads the gestures to the gesture library
 
-        //Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
-        newGame = (Button) findViewById(R.id.NewGame);//setting the new game button to the New Game in XML
-        tvGuessedWord = (TextView) findViewById(R.id.textView_guess);
+
 
         testword = getRandWord(difficulty);
-
+        testword = "bee";
         String blankString = getBlankString(testword);
         tvGuessedWord.setText(blankString);//replace testword with whatever the actual value is
 
@@ -94,7 +104,6 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
                 startActivity(NewGame);
             }
         });
-        quitButton = (Button) findViewById(R.id.Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Log.d(TAG, "Quit was Pressed");
@@ -103,190 +112,21 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
             }
         });
 
-        letters[0].setOnClickListener(new View.OnClickListener() {
+        voiceButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed A", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'a';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[1].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed B", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'b';
-                checkWord(guessedLetter);
+                Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
+                try {
+                    startActivityForResult(i, REQUEST_OK);
+                } catch (Exception e) {
+                    Toast.makeText(context, "Error initializing speech to text engine.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
-        letters[2].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed C", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'c';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[3].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed D", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'd';
-                checkWord(guessedLetter);
-            }
-        });
 
-        letters[4].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed E", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'e';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[5].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed F", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'f';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[6].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed G", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'g';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[7].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed H", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'h';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[8].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed I", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'i';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[9].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed J", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'j';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[10].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed K", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'k';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[11].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed L", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'l';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[12].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed M", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'm';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[13].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed N", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'n';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[14].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed O", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'o';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[15].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed P", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'p';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[16].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed Q", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'q';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[17].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed R", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'r';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[18].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed S", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 's';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[19].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed T", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 't';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[20].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed U", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'u';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[21].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed V", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'v';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[22].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed W", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'w';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[23].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed X", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'x';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[24].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed Y", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'y';
-                checkWord(guessedLetter);
-            }
-        });
-        letters[25].setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Button Pressed Z", Toast.LENGTH_SHORT).show();
-                char guessedLetter = 'z';
-                checkWord(guessedLetter);
-            }
-        });
 
 
         //Switches view from keyboard to gesture mode
@@ -302,16 +142,6 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
 
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        i.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "en-US");
-        try {
-            startActivityForResult(i, REQUEST_OK);
-        } catch (Exception e) {
-            Toast.makeText(this, "Error initializing speech to text engine.", Toast.LENGTH_LONG).show();
-        }
-    }
 
     //Called when a gesture is made on gesture overlay
     //recognizes gestures and calls checkWord with letter made with gestures
@@ -344,6 +174,8 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
                 guessedLetter = 'r';
             else if(thingsYouSaid.get(0).equals("you"))
                 guessedLetter = 'u';
+
+            checkWord(guessedLetter);
         }
     }
 
@@ -385,20 +217,6 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
     }
 
 
-    /*public char voiceRecog(){//calls some voice recognition system to obtain a letter
-        char finalchar= a;
-        return finalchar;
-    }
-    */
-    public char gestureRecog(){//calls some gesture system to check the users drawn letter
-        return 0;
-    }
-
-
-    public void updateUsedLetters() {//will remove the guessed letter from the keyboard/letters array
-
-    }
-
     public int drawMan() {//this will be called when checkWord() returns a false value and will draw a piece of the character
         guessesRemaining--;
         //drawing the actual hangman picture piece by piece
@@ -420,14 +238,6 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener, O
         Toast.makeText(context,"YOU Lose :(", Toast.LENGTH_SHORT).show();
     }
 
-    /*public void newGame(){//allows the user to start a new game will call the difficulty screen or the main menu and begin from there
-        newGame.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent NewGame = new Intent(getBaseContext(),MainActivity.class);//intents allow you to transfer data over transfer variables over to new class
-                startActivity(NewGame);
-            }
-        });
-    }*/
 
     public void quit() {//method to close the application when the user wants to quit
         Intent intent = new Intent(Intent.ACTION_MAIN);
