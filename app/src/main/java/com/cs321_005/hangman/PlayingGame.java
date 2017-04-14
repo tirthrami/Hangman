@@ -10,18 +10,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 import android.widget.Toast;
 import android.speech.RecognizerIntent;
 import android.view.View.OnClickListener;
 import android.view.View;
 import android.app.Activity;
+import android.gesture.*;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PlayingGame extends AppCompatActivity implements OnClickListener {
+public class PlayingGame extends AppCompatActivity implements OnClickListener, OnGesturePerformedListener {
     String TAG = "PlayingGame";
     char guessedLetter;
     String difficulty;
@@ -36,6 +40,9 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
     String testword = "";
     int guessesRemaining = 6;
     Context context = this;
+    GestureLibrary gLib; //Collection of saved gestures for letters a-z
+    ViewFlipper viewFlipper;
+    GestureOverlayView gOverlay;
 
     int[] letterID = {R.id.button_A, R.id.button_B, R.id.button_C, R.id.button_D, R.id.button_E, R.id.button_F, R.id.button_G,
             R.id.button_H, R.id.button_I, R.id.button_J, R.id.button_K, R.id.button_L, R.id.button_M, R.id.button_N, R.id.button_O,
@@ -62,6 +69,13 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
         voiceButton = (Button) findViewById(R.id.button_voice);
         voiceButton.setOnClickListener(this);
         gestureButton = (Button) findViewById(R.id.Gesture);
+
+        viewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);//animator used to switch between keyboard and gestures
+        gOverlay = (GestureOverlayView) findViewById(R.id.gOverlay);//view where gestures will be made
+        gOverlay.addOnGesturePerformedListener(this);//creates a gesture listener to check for gestures on this overlay
+
+        gLib = GestureLibraries.fromRawResource(context, R.raw.gestures);
+        gLib.load();//Loads the gestures to the gesture library
 
         //Toast.makeText(getApplicationContext(), "True", Toast.LENGTH_SHORT).show();
         newGame = (Button) findViewById(R.id.NewGame);//setting the new game button to the New Game in XML
@@ -274,6 +288,18 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
             }
         });
 
+
+        //Switches view from keyboard to gesture mode
+        //once gesture is made on gesture overlay, gesture listener is called
+        gestureButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+
+                viewFlipper.setDisplayedChild(1);
+            }
+        });
+
+
+
     }
 
     @Override
@@ -285,6 +311,19 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
         } catch (Exception e) {
             Toast.makeText(this, "Error initializing speech to text engine.", Toast.LENGTH_LONG).show();
         }
+    }
+
+    //Called when a gesture is made on gesture overlay
+    //recognizes gestures and calls checkWord with letter made with gestures
+    //Returns back to keyboard view after gesture is made
+    public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+        ArrayList<Prediction> predictions = gLib.recognize(gesture);
+
+
+        char letter = predictions.get(0).name.charAt(0);
+        checkWord(letter);
+        viewFlipper.setDisplayedChild(0);
+
     }
 
     @Override
@@ -350,11 +389,10 @@ public class PlayingGame extends AppCompatActivity implements OnClickListener {
         char finalchar= a;
         return finalchar;
     }
-
+    */
     public char gestureRecog(){//calls some gesture system to check the users drawn letter
-        char finalchar = a;
-        return finalchar;
-    }*/
+        return 0;
+    }
 
 
     public void updateUsedLetters() {//will remove the guessed letter from the keyboard/letters array
