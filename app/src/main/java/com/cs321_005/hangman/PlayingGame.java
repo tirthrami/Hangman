@@ -1,8 +1,10 @@
 package com.cs321_005.hangman;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Random;
 
+@TargetApi(Build.VERSION_CODES.DONUT)
 public class PlayingGame extends AppCompatActivity implements OnGesturePerformedListener {
     String TAG = "PlayingGame";
     char guessedLetter;
