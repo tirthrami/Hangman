@@ -95,7 +95,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
 
 
         testword = getRandWord(difficulty);
-        testword = "bee";
+        //testword = "bee";
         String blankString = getBlankString(testword);
         tvGuessedWord.setText(blankString);//replace testword with whatever the actual value is
 
@@ -228,17 +228,21 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
             youLose();
         }
         Toast.makeText(getApplicationContext(), "You Have " + guessesRemaining + " Guesses Remaining", Toast.LENGTH_SHORT).show();
-        return guessesRemaining;
+        return guessesRemaining;//need to add the actual drawing of the stick man here...
 
     }
 
     public void youWin() {//if the user guesses the word before the count reaches 6 then they win
         Toast.makeText(context,"YOU WIN!", Toast.LENGTH_SHORT).show();
+        Intent homeScreen = new Intent(getBaseContext(),MainActivity.class);//returns you to the main menu once you win.
+        startActivity(homeScreen);
 
     }
 
     public void youLose() {//once the count reaches 6 the user is presented with this screen saying that they lost
         Toast.makeText(context,"YOU Lose :(", Toast.LENGTH_SHORT).show();
+        Intent homeScreen = new Intent(getBaseContext(),MainActivity.class);//intent to reutrn to main menu once you lose
+        startActivity(homeScreen);
     }
 
 
