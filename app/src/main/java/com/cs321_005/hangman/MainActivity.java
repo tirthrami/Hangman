@@ -18,10 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         difficultyButton = (Button) findViewById(R.id.difficultyButton);
         howToPlay = (Button) findViewById(R.id.Help);
-        Toast.makeText(getApplicationContext(), "Testing", Toast.LENGTH_SHORT).show();
-        Log.d("GitTesting", "Test Git");
-        Log.d("GitTesting", "Ahmads Test Message");
-        Log.d("TestMessages", "Test2");
+
         difficultyButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent difficulty = new Intent(getBaseContext(),Difficulty.class);//intents allow you to transfer data over transfer variables over to new class
