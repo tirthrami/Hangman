@@ -270,16 +270,20 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
     }
 
     public void youWin() {//if the user guesses the word before the count reaches 6 then they win
-        Toast.makeText(context, "YOU WIN!", Toast.LENGTH_SHORT).show();
-        Intent homeScreen = new Intent(getBaseContext(), MainActivity.class);//returns you to the main menu once you win.
-        startActivity(homeScreen);
+
+
+        Toast.makeText(context,"YOU WIN!", Toast.LENGTH_SHORT).show();
+        Intent youWinIntent = new Intent(getBaseContext(),youWin.class);//returns you to the main menu once you win.
+        startActivity(youWinIntent);//diplays the youWin layout letting the user know you won.
+
 
     }
 
     public void youLose() {//once the count reaches 6 the user is presented with this screen saying that they lost
-        Toast.makeText(context, "YOU Lose :(", Toast.LENGTH_SHORT).show();
-        Intent homeScreen = new Intent(getBaseContext(), MainActivity.class);//intent to reutrn to main menu once you lose
-        startActivity(homeScreen);
+
+        Toast.makeText(context,"YOU Lose :(", Toast.LENGTH_SHORT).show();
+        Intent youLoseIntent = new Intent(getBaseContext(),youLose.class);//intent to reutrn to main menu once you lose
+        startActivity(youLoseIntent);//sends user to the you lose screen and tells them they lost allowing them to return to the main menu
     }
 
 
