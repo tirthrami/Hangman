@@ -25,7 +25,9 @@
 
         <activity android:name=".HowToPlay" />
         <activity android:name=".Difficulty" />
-        <activity android:name=".PlayingGame"></activity>
+        <activity android:name=".PlayingGame" />
+        <activity android:name=".youWin" />
+        <activity android:name=".youLose"></activity>
     </application>
 
 </manifest>
