@@ -54,6 +54,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
 
     char[] alpha = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
+    boolean[] alphaCheck;
     protected static final int REQUEST_OK = 1;
 
 
@@ -68,7 +69,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         /**
          * Initialize Alphabet Buttons
          */
-        for(int i =0; i < letters.length; i++){
+        for (int i = 0; i < letters.length; i++) {
             final int j = i;
             letters[i] = (Button) findViewById(letterID[i]);
             letters[i].setOnClickListener(new OnClickListener() {
@@ -87,18 +88,18 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         viewFlipper = (ViewFlipper) findViewById(R.id.viewFlipper);//animator used to switch between keyboard and gestures
         gOverlay = (GestureOverlayView) findViewById(R.id.gOverlay);//view where gestures will be made
 
+        alphaCheck = new boolean[26];
+
         gOverlay.addOnGesturePerformedListener(this);//creates a gesture listener to check for gestures on this overlay
 
         gLib = GestureLibraries.fromRawResource(context, R.raw.gestures);
         gLib.load();//Loads the gestures to the gesture library
 
 
-
         testword = getRandWord(difficulty);
         //testword = "bee";
         String blankString = getBlankString(testword);
         tvGuessedWord.setText(blankString);//replace testword with whatever the actual value is
-
 
 
         newGame.setOnClickListener(new View.OnClickListener() {//listens for the click of the NEw Game button and starts a new game
@@ -130,17 +131,14 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         });
 
 
-
-
         //Switches view from keyboard to gesture mode
         //once gesture is made on gesture overlay, gesture listener is called
-        gestureButton.setOnClickListener(new View.OnClickListener(){
+        gestureButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
                 viewFlipper.setDisplayedChild(1);
             }
         });
-
 
 
     }
@@ -162,20 +160,20 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==REQUEST_OK  && resultCode==RESULT_OK) {
+        if (requestCode == REQUEST_OK && resultCode == RESULT_OK) {
             ArrayList<String> thingsYouSaid = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
             guessedLetter = thingsYouSaid.get(0).charAt(0);
 
             //accounts for letters that sound like words
             //ISSUE: can't recognize letter 'e' for some reason
-            if(thingsYouSaid.get(0).equals("see"))
+            if (thingsYouSaid.get(0).equals("see"))
                 guessedLetter = 'c';
-            else if(thingsYouSaid.get(0).equals("why"))
+            else if (thingsYouSaid.get(0).equals("why"))
                 guessedLetter = 'y';
-            else if(thingsYouSaid.get(0).equals("are"))
+            else if (thingsYouSaid.get(0).equals("are"))
                 guessedLetter = 'r';
-            else if(thingsYouSaid.get(0).equals("you"))
+            else if (thingsYouSaid.get(0).equals("you"))
                 guessedLetter = 'u';
 
             checkWord(guessedLetter);
@@ -191,22 +189,40 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
     }
 
     public boolean checkWord(char letterCheck) {//checks the guessed letter against the word to be guessed
+        int index = -1;
+        for (int j = 0; j < alpha.length; j++) {
+            if(alpha[j] == letterCheck) {
+                Log.d(TAG, letterCheck + " was recognized");
+                for (int i = 0; i < alpha.length; i++) {
+                    if (letterCheck == alpha[i]) {
+                        index = i;
+                        if (alphaCheck[i]) {
 
-        if (testword.indexOf(letterCheck) != -1) {
-            Log.d(TAG, "Letter is in word");
-            String currentGuess = getReplacedWord(testword, letterCheck);
-            tvGuessedWord.setText(currentGuess);
-            checkWordComplete(currentGuess);
-            return true;
-        } else {
-            Log.d(TAG, "Letter is not in word");
-            drawMan();
-            return false;
+                            return false;
+                        }
+                    }
+                }
+
+                alphaCheck[index] = true;
+                if (testword.indexOf(letterCheck) != -1) {
+                    Log.d(TAG, "Letter is in word");
+                    String currentGuess = getReplacedWord(testword, letterCheck);
+                    tvGuessedWord.setText(currentGuess);
+                    checkWordComplete(currentGuess);
+                    return true;
+                } else {
+                    Log.d(TAG, "Letter is not in word");
+                    drawMan();
+                    return false;
+                }
+            }
         }
+        Toast.makeText(context, "Not a valid letter", Toast.LENGTH_SHORT).show();
+        return false;
     }
 
     private void checkWordComplete(String currentGuess) {
-        if(!currentGuess.contains("_")) youWin();
+        if (!currentGuess.contains("_")) youWin();
     }
 
     private String getReplacedWord(String testword, char letterCheck) {
@@ -224,7 +240,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         guessesRemaining--;
         //drawing the actual hangman picture piece by piece
 
-        switch(guessesRemaining){
+        switch (guessesRemaining) {
             case 5:
                 noose.setBackgroundResource(R.drawable.a1);
                 break;
@@ -254,13 +270,17 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
     }
 
     public void youWin() {//if the user guesses the word before the count reaches 6 then they win
+
+
         Toast.makeText(context,"YOU WIN!", Toast.LENGTH_SHORT).show();
         Intent youWinIntent = new Intent(getBaseContext(),youWin.class);//returns you to the main menu once you win.
         startActivity(youWinIntent);//diplays the youWin layout letting the user know you won.
 
+
     }
 
     public void youLose() {//once the count reaches 6 the user is presented with this screen saying that they lost
+
         Toast.makeText(context,"YOU Lose :(", Toast.LENGTH_SHORT).show();
         Intent youLoseIntent = new Intent(getBaseContext(),youLose.class);//intent to reutrn to main menu once you lose
         startActivity(youLoseIntent);//sends user to the you lose screen and tells them they lost allowing them to return to the main menu
@@ -277,10 +297,10 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
 
     public String getRandWord(String difficulty) {
         String[] array;
-        switch(difficulty){
+        switch (difficulty) {
             case "Easy":
                 array = context.getResources().getStringArray(R.array.easy_word_array);
-                 return array[new Random().nextInt(array.length)];
+                return array[new Random().nextInt(array.length)];
             case "Medium":
                 array = context.getResources().getStringArray(R.array.medium_word_array);
                 return array[new Random().nextInt(array.length)];
