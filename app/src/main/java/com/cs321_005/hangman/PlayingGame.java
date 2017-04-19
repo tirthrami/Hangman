@@ -78,7 +78,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
                 }
             });
         }
-
+        noose = (ImageView) findViewById(R.id.iv_noose);
         voiceButton = (Button) findViewById(R.id.button_voice);
         gestureButton = (Button) findViewById(R.id.Gesture);
         quitButton = (Button) findViewById(R.id.Quit);
@@ -224,8 +224,29 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         guessesRemaining--;
         //drawing the actual hangman picture piece by piece
 
-        if (guessesRemaining == 0) {
-            youLose();
+        switch(guessesRemaining){
+            case 5:
+                noose.setBackgroundResource(R.drawable.a1);
+                break;
+            case 4:
+                noose.setBackgroundResource(R.drawable.a2);
+                break;
+            case 3:
+                noose.setBackgroundResource(R.drawable.a3);
+                break;
+            case 2:
+                noose.setBackgroundResource(R.drawable.a4);
+                break;
+            case 1:
+                noose.setBackgroundResource(R.drawable.a5);
+                break;
+            case 0:
+                noose.setBackgroundResource(R.drawable.a6);
+                youLose();
+                break;
+            default:
+                youLose();
+                break;
         }
         Toast.makeText(getApplicationContext(), "You Have " + guessesRemaining + " Guesses Remaining", Toast.LENGTH_SHORT).show();
         return guessesRemaining;//need to add the actual drawing of the stick man here...
