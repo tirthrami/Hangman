@@ -180,7 +180,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
         }
     }
 
-    private String getBlankString(String testword) {
+    public static String getBlankString(String testword) {
         String blank = "";
         for (int i = 0; i < testword.length(); i++) {
             blank += "_";
