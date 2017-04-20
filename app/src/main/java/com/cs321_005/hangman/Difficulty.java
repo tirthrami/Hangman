@@ -49,6 +49,13 @@ public class Difficulty extends AppCompatActivity {
             }
         });
 
+
+
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }
