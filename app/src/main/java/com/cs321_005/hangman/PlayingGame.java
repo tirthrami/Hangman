@@ -190,6 +190,8 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
 
     public boolean checkWord(char letterCheck) {//checks the guessed letter against the word to be guessed
         int index = -1;
+        Log.d(TAG, letterCheck + " was parsed");
+        letterCheck = Character.toLowerCase(letterCheck);
         for (int j = 0; j < alpha.length; j++) {
             if(alpha[j] == letterCheck) {
                 Log.d(TAG, letterCheck + " was recognized");
@@ -288,6 +290,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
 
 
     public void quit() {//method to close the application when the user wants to quit
+        finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -309,5 +312,11 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
                 return array[new Random().nextInt(array.length)];
         }
         return "";
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }
