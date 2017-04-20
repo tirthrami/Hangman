@@ -315,7 +315,7 @@ public class PlayingGame extends AppCompatActivity implements OnGesturePerformed
     }
 
     @Override
-    protected void onPause() {
+    protected void onDestroy() {
         super.onPause();
         finish();
     }
